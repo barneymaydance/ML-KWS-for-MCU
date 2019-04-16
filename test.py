@@ -184,7 +184,7 @@ if __name__ == '__main__':
   parser.add_argument(
       '--data_dir',
       type=str,
-      default='/tmp/speech_dataset/',
+      default='/home/shlin/Documents/Tsinghua_neu_project/keyword/google_speech_commands_v0.02',
       help="""\
       Where to download the speech training data to.
       """)

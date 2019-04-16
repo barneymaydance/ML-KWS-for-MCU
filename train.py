@@ -105,6 +105,7 @@ def main(_):
       len(input_data.prepare_words_list(FLAGS.wanted_words.split(','))),
       FLAGS.sample_rate, FLAGS.clip_duration_ms, FLAGS.window_size_ms,
       FLAGS.window_stride_ms, FLAGS.dct_coefficient_count)
+  print(model_settings)
   audio_processor = input_data.AudioProcessor(
       FLAGS.data_url, FLAGS.data_dir, FLAGS.silence_percentage,
       FLAGS.unknown_percentage,
@@ -160,11 +161,11 @@ def main(_):
   with tf.name_scope('train'), tf.control_dependencies(update_ops), tf.control_dependencies(control_dependencies):
     learning_rate_input = tf.placeholder(
         tf.float32, [], name='learning_rate_input')
-    train_op = tf.train.AdamOptimizer(
-        learning_rate_input)
-    train_step = slim.learning.create_train_op(cross_entropy_mean, train_op)
-#    train_step = tf.train.GradientDescentOptimizer(
-#        learning_rate_input).minimize(cross_entropy_mean)
+    # train_op = tf.train.AdamOptimizer(
+    #     learning_rate_input)
+    # train_step = slim.learning.create_train_op(cross_entropy_mean, train_op)
+    train_step = tf.train.AdamOptimizer(learning_rate_input).minimize(cross_entropy_mean)
+    # train_step = tf.train.GradientDescentOptimizer(learning_rate_input).minimize(cross_entropy_mean)
   predicted_indices = tf.argmax(logits, 1)
   expected_indices = tf.argmax(ground_truth_input, 1)
   correct_prediction = tf.equal(predicted_indices, expected_indices)
@@ -316,7 +317,7 @@ if __name__ == '__main__':
   parser.add_argument(
       '--data_dir',
       type=str,
-      default='/tmp/speech_dataset/',
+      default='/home/shlin/Documents/Tsinghua_neu_project/keyword/google_speech_commands_v0.02',
       help="""\
       Where to download the speech training data to.
       """)
