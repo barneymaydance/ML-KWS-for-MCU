@@ -26,6 +26,7 @@ from __future__ import print_function
 import argparse
 import os.path
 import sys
+from six.moves import xrange  # pylint: disable=redefined-builtin
 
 import tensorflow as tf
 import input_data

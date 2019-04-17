@@ -162,7 +162,7 @@ def main(_):
     learning_rate_input = tf.placeholder(
         tf.float32, [], name='learning_rate_input')
     # train_op = tf.train.AdamOptimizer(
-    #     learning_rate_input)
+    #    learning_rate_input)
     # train_step = slim.learning.create_train_op(cross_entropy_mean, train_op)
     train_step = tf.train.AdamOptimizer(learning_rate_input).minimize(cross_entropy_mean)
     # train_step = tf.train.GradientDescentOptimizer(learning_rate_input).minimize(cross_entropy_mean)
