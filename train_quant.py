@@ -348,7 +348,7 @@ def main(_):
     tf.logging.info('After quantized: Validation accuracy = %.2f%% (N=%d)' %
                     (total_accuracy * 100, set_size))
     checkpoint_path = os.path.join(FLAGS.train_dir, 'quantized',
-                                   FLAGS.model_architecture + '_' +FLAGS.num_bits+'bits_' + FLAGS.quant_type + '_' + str(
+                                   FLAGS.model_architecture + '_' + str(FLAGS.num_bits) + 'bits_' + FLAGS.quant_type + '_' + str(
                                        int(total_accuracy * 10000)) + '.ckpt')
     tf.logging.info('Saving quantized model to "%s"', checkpoint_path)
     saver.save(sess, checkpoint_path)
